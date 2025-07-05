@@ -1,0 +1,26 @@
+# .dockerignore para Backend
+node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs
+*.log
+pids
+*.pid
+*.seed
+*.pid.lock
+coverage
+*.lcov
+.tmp
+*.tmp
+.DS_Store
+Thumbs.db
+.vscode
+.idea
+test
+tests
+__tests__
+*.bak
+*.backup
+*.md
+!README.md

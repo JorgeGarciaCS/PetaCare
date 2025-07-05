@@ -1,0 +1,65 @@
+version: '3.8'
+
+services:
+  # MongoDB Database
+  mongo:
+    image: mongo:6
+    container_name: petacare-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    environment:
+      - MONGO_INITDB_DATABASE=petacare
+    networks:
+      - petacare-network
+    restart: unless-stopped
+
+  # Backend API
+  backend:
+    build: 
+      context: ./crud-api
+      dockerfile: Dockerfile
+    container_name: petacare-backend
+    ports:
+      - "3001:3001"
+    environment:
+      - MONGODB_URI=mongodb://mongo:27017/petacare
+      - PORT=3001
+      - JWT_SECRET=21b8cd697d74b71bf5e1f57c499858be9f58acb93bf1adf0e1001e31b368089f
+      - SESSION_SECRET=2d84d0c5fe89d67d9e4c48b3b38df8e422900f9f2fa2c844d55d9865b5ece3a5
+      - NODE_ENV=development
+    depends_on:
+      - mongo
+    networks:
+      - petacare-network
+    restart: unless-stopped
+    volumes:
+      - ./crud-api:/usr/src/app
+      - /usr/src/app/node_modules
+
+  # Frontend
+  frontend:
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: petacare-frontend
+    ports:
+      - "3002:3002"
+    environment:
+      - BACKEND_URL=http://localhost:3001
+    depends_on:
+      - backend
+    networks:
+      - petacare-network
+    restart: unless-stopped
+    volumes:
+      - ./frontend:/usr/src/app
+      - /usr/src/app/node_modules
+
+volumes:
+  mongo_data:
+
+networks:
+  petacare-network:
+    driver: bridge
