@@ -30,8 +30,8 @@ npm start &
 FRONTEND_PID=$!
 
 echo "✅ PetACare iniciado exitosamente!"
-echo "   Backend: http://localhost:3000"
-echo "   Frontend: http://localhost:3001"
+echo "   Backend: http://localhost:3001"
+echo "   Frontend: http://localhost:3002"
 echo ""
 echo "Para detener los servidores, presiona Ctrl+C"
 

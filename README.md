@@ -10,7 +10,20 @@ Este proyecto implementa un sistema completo de autenticación para PetACare con
 start.bat
 ```
 
-### Para Linux/Mac:
+### Para Ubuntu/Linux:
+```bash
+# Configuración inicial (una sola vez)
+chmod +x *.sh
+./ubuntu-setup.sh
+
+# Inicio en desarrollo
+./ubuntu-start.sh
+
+# Inicio en producción (PM2)
+./ubuntu-pm2.sh
+```
+
+### Para Linux/Mac (general):
 ```bash
 # Hacer ejecutable el script
 chmod +x start.sh
@@ -41,39 +54,92 @@ npm start
 PetACare/
 ├── crud-api/                    # Backend (Node.js + Express)
 │   ├── models/                  # Modelos de MongoDB
-│   │   └── Usuario.js          # Modelo de Usuario con encriptación
+│   │   ├── Usuario.js          # Modelo de Usuario con encriptación
+│   │   ├── Publicacion.js      # Modelo de Publicaciones
+│   │   ├── Producto.js         # Modelo de Productos
+│   │   ├── Comentario.js       # Modelo de Comentarios
+│   │   └── Notificacion.js     # Modelo de Notificaciones
 │   ├── routes/                  # Rutas de la API
 │   │   ├── auth.js             # Rutas de autenticación
-│   │   └── usuarios.js         # Rutas de usuarios (protegidas)
+│   │   ├── usuarios.js         # Rutas de usuarios (protegidas)
+│   │   ├── publicaciones.js    # Rutas de publicaciones
+│   │   ├── productos.js        # Rutas de productos
+│   │   ├── comentarios.js      # Rutas de comentarios
+│   │   └── notificaciones.js   # Rutas de notificaciones
 │   ├── middleware/              # Middlewares
 │   │   └── auth.js             # Middleware de autenticación JWT
 │   ├── app.js                   # Aplicación principal
 │   ├── package.json            # Dependencias del backend
-│   └── .env                     # Variables de entorno
-├── frontend/                    # Frontend (React)
-│   ├── src/
-│   │   ├── components/         # Componentes React
-│   │   │   ├── Login.js        # Formulario de login
-│   │   │   ├── Register.js     # Formulario de registro
-│   │   │   ├── Dashboard.js    # Panel de usuario
-│   │   │   └── Navigation.js   # Navegación
-│   │   ├── contexts/           # Contextos de React
-│   │   │   └── AuthContext.js  # Contexto de autenticación
-│   │   ├── styles/             # Estilos CSS
-│   │   │   └── Auth.css        # Estilos principales
-│   │   └── App.js              # Aplicación principal
-│   ├── package.json            # Dependencias del frontend
-│   └── README.md               # Documentación del frontend
+│   ├── .env                     # Variables de entorno (Windows)
+│   └── .env.ubuntu             # Variables de entorno (Ubuntu)
+├── frontend/                    # Frontend (HTML/CSS/JS)
+│   ├── public/
+│   │   ├── index.html          # Página principal
+│   │   ├── styles.css          # Estilos CSS modernos
+│   │   └── app.js              # Aplicación JavaScript
+│   ├── server.js               # Servidor estático
+│   └── package.json            # Dependencias del frontend
 ├── start.bat                   # Script de inicio para Windows
 ├── start.sh                    # Script de inicio para Linux/Mac
+├── docker-compose.yml          # Configuración Docker principal
+├── docker-compose.prod.yml     # Configuración Docker producción
+├── docker-setup-ubuntu.sh      # Configuración Docker Ubuntu
+├── docker-start.sh             # Inicio con Docker
+├── docker-manage.sh            # Gestor Docker avanzado
+├── ubuntu-setup.sh             # Configuración inicial Ubuntu
+├── ubuntu-start.sh             # Inicio en desarrollo Ubuntu
+├── ubuntu-pm2.sh               # Inicio en producción Ubuntu
+├── transfer-to-ubuntu.sh       # Script de transferencia
+├── DOCKER_MIGRATION_GUIDE.md   # Guía Docker completa
+├── DOCKER_QUICK_COMMANDS.md    # Comandos rápidos Docker
+├── MIGRATION_GUIDE_UBUNTU.md   # Guía completa de migración
+├── QUICK_COMMANDS_UBUNTU.md    # Comandos rápidos Ubuntu
 └── README.md                   # Este archivo
 ```
 
 ## 🌐 URLs de Acceso
 
-- **Frontend**: http://localhost:3001
-- **Backend API**: http://localhost:3000
+### Con Docker:
+- **Frontend**: http://localhost:3002
+- **Backend API**: http://localhost:3001/api
+
+### Sin Docker:
+- **Frontend**: http://localhost:3002
+- **Backend API**: http://localhost:3001/api
 - **Documentación API**: Consulta `crud-api/API_AUTHENTICATION.md`
+
+## 🐧 Migración a Ubuntu
+
+### 🐳 Con Docker (Recomendado)
+```bash
+# 1. Configurar Docker
+./docker-setup-ubuntu.sh
+
+# 2. Iniciar aplicación
+./docker-start.sh
+
+# 3. Gestionar contenedores
+./docker-manage.sh start
+```
+
+### 📋 Instalación Manual
+Para migrar el proyecto a Ubuntu sin Docker, consulta la guía completa:
+- **Guía con Docker**: `DOCKER_MIGRATION_GUIDE.md`
+- **Guía manual**: `MIGRATION_GUIDE_UBUNTU.md`
+- **Comandos rápidos**: `DOCKER_QUICK_COMMANDS.md`
+
+### Resumen rápido para Ubuntu (sin Docker):
+```bash
+# 1. Transferir archivos a Ubuntu
+# 2. Configuración inicial
+./ubuntu-setup.sh
+
+# 3. Iniciar en desarrollo
+./ubuntu-start.sh
+
+# 4. Iniciar en producción
+./ubuntu-pm2.sh
+```
 
 ## 🔐 Funcionalidades Implementadas
 

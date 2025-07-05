@@ -2,6 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import session from 'express-session';
+import cors from 'cors';
 
 // Importar las rutas de cada colección
 import usuariosRoutes from './routes/usuarios.js';
@@ -15,7 +16,12 @@ dotenv.config();
 const app = express();
 
 // Middleware
-app.use(express.json());  // Para manejar las solicitudes con cuerpo JSON
+app.use(cors({
+  origin: ['http://localhost:3002', 'http://localhost:3000'],
+  credentials: true
+}));
+app.use(express.json({ limit: '50mb' }));  // Aumentar límite para imágenes
+app.use(express.urlencoded({ limit: '50mb', extended: true }));  // Para manejar las solicitudes con cuerpo JSON
 
 // Configuración de sesiones
 app.use(session({
