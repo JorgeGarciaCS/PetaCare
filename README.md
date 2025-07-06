@@ -1,8 +1,58 @@
 # 🐾 PetACare - Sistema de Autenticación Completo
 
-Este proyecto implementa un sistema completo de autenticación para PetACare con **Backend (Node.js + Express + MongoDB)** y **Frontend (React)**.
+Este proyecto implementa un sistema completo de autenticación para PetACare con **Backend (Node.js + Express + MongoDB)** y **Frontend (HTML/CSS/JS)**.
+
+## 🌐 Repositorio GitHub
+
+**Proyecto disponible en**: https://github.com/JorgeGarciaCS/PetaCare
+
+## 🌍 Despliegue con IP Pública
+
+### 🚀 Para acceso externo (IP pública):
+```bash
+# Clonar proyecto
+git clone https://github.com/JorgeGarciaCS/PetaCare.git
+cd PetaCare
+
+# Configurar IP pública (ver PUBLIC_IP_DEPLOYMENT.md)
+# Ejecutar con Docker
+docker-compose up -d --build
+
+# Acceder desde cualquier PC:
+# Frontend: http://TU_IP_PUBLICA:3002
+# Backend: http://TU_IP_PUBLICA:3001/api
+```
+
+**📋 Guía completa**: `PUBLIC_IP_DEPLOYMENT.md`
 
 ## 🚀 Inicio Rápido
+
+### 🌍 Configuración Automática (Nuevo)
+```bash
+# Clonar proyecto
+git clone https://github.com/JorgeGarciaCS/PetaCare.git
+cd PetaCare
+
+# Configuración automática con IP pública
+chmod +x setup-public-ip.sh
+./setup-public-ip.sh [TU_IP_PUBLICA]
+
+# ¡Listo! Accede desde cualquier PC:
+# http://TU_IP_PUBLICA:3002
+```
+
+### 🐳 Con Docker (Recomendado para Ubuntu):
+```bash
+# Clonar proyecto
+git clone https://github.com/JorgeGarciaCS/PetaCare.git
+cd PetaCare
+
+# Configurar Docker
+./docker-setup-ubuntu.sh
+
+# Iniciar aplicación
+./docker-start.sh
+```
 
 ### Para Windows:
 ```bash
@@ -10,8 +60,12 @@ Este proyecto implementa un sistema completo de autenticación para PetACare con
 start.bat
 ```
 
-### Para Ubuntu/Linux:
+### Para Ubuntu/Linux (sin Docker):
 ```bash
+# Clonar proyecto
+git clone https://github.com/JorgeGarciaCS/PetaCare.git
+cd PetaCare
+
 # Configuración inicial (una sola vez)
 chmod +x *.sh
 ./ubuntu-setup.sh
@@ -100,12 +154,12 @@ PetACare/
 ## 🌐 URLs de Acceso
 
 ### Con Docker:
-- **Frontend**: http://localhost:3002
-- **Backend API**: http://localhost:3001/api
+- **Frontend**: http://20.106.185.16:3002
+- **Backend API**: http://20.106.185.16:3001/api
 
 ### Sin Docker:
-- **Frontend**: http://localhost:3002
-- **Backend API**: http://localhost:3001/api
+- **Frontend**: http://20.106.185.16:3002
+- **Backend API**: http://20.106.185.16:3001/api
 - **Documentación API**: Consulta `crud-api/API_AUTHENTICATION.md`
 
 ## 🐧 Migración a Ubuntu
