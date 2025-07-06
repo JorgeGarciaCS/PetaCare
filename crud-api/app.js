@@ -17,7 +17,7 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: ['http://localhost:3002', 'http://localhost:3000'],
+  origin: ['http://localhost:3002', 'http://localhost:3000', 'http://20.106.185.16:3002', 'http://20.106.185.16:3001'],
   credentials: true
 }));
 app.use(express.json({ limit: '50mb' }));  // Aumentar límite para imágenes
@@ -33,6 +33,17 @@ app.use(session({
     maxAge: 24 * 60 * 60 * 1000 // 24 horas
   }
 }));
+
+// Endpoint de salud
+app.get('/api/health', (req, res) => {
+  res.json({
+    status: 'OK',
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime(),
+    environment: process.env.NODE_ENV || 'development',
+    database: mongoose.connection.readyState === 1 ? 'connected' : 'disconnected'
+  });
+});
 
 // Rutas
 app.use('/api/auth', authRoutes);  // Rutas de autenticación

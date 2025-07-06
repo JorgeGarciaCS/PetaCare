@@ -82,15 +82,15 @@ git init
 git add .
 git commit -m "Initial commit - PetaCare project with Docker"
 
-# Subir a GitHub/GitLab (opcional pero recomendado)
-git remote add origin https://github.com/tuusuario/petacare.git
+# Subir a GitHub
+git remote add origin https://github.com/JorgeGarciaCS/PetaCare.git
 git push -u origin main
 ```
 
 #### Paso 2: Clonar en Ubuntu
 ```bash
 cd ~
-git clone https://github.com/tuusuario/petacare.git PetaCare
+git clone https://github.com/JorgeGarciaCS/PetaCare.git PetaCare
 cd PetaCare
 ```
 
